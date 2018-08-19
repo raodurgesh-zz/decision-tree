@@ -1,0 +1,123 @@
+
+
+.interaction-wrapper {
+    color: #888;
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+}
+
+
+.interaction-wrapper .button {
+    padding: 5px;
+    position: absolute;
+    right: 2px;
+    top: 0;
+
+}
+
+
+.interaction-wrapper .button .remove-button {
+    background: url('../assets/cross.png')  no-repeat;
+    height: 20px;
+    width: 25px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.interaction-wrapper .button .add-button {
+    background: url('../assets/done.png') no-repeat;   
+    height: 20px;
+    width: 25px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.input-box input {
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    width: 100%;
+    border-radius: 2px;
+    margin: 10px 0px;
+}
+
+.interaction-menu{
+    width: 150px;
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0px;
+    padding: 0px;
+    color: #666;
+    font-size: 14px;
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+}
+
+.interaction-menu li.item{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.interaction-menu li.item:hover{
+    background: #008aff;
+    color: #fff;
+}
+.interaction-menu li.item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+
+/*******************************SELECT-BOX *********************************/
+
+.select-style {
+    padding: 5px;
+    margin: 10px 0px 5px 0px;
+    border: 1px solid #ccc;
+    width: 302px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.select-style:after {
+    top: 50%;
+    left: 90%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #000000;
+    border-width: 5px;
+    margin-top: -2px;
+    z-index: 100;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
