@@ -41,14 +41,14 @@ export default class InteractionMenu extends Component {
       <ul
         className="interaction-menu"
         ref={this.setWrapperRef}
-        style={{ left, top }}
+        style={{ left: left - 15, top: top - 10 }}
       >
         <li
           className="item"
           onClick={() => this.selectedItem('interaction-input')}
         >
           {' '}
-          <i className="fa fa-sitemap" aria-hidden="true" />{' '}
+          <i class="fa fa-sitemap" aria-hidden="true" />{' '}
           <span>Interaction</span>
         </li>
         <li
@@ -56,19 +56,18 @@ export default class InteractionMenu extends Component {
           onClick={() => this.selectedItem('interaction-ddl')}
         >
           {' '}
-          <i className="fa fa-clone" aria-hidden="true" />{' '}
-          <span>Duplicate</span>
+          <i class="fa fa-clone" aria-hidden="true" /> <span>Duplicate</span>
         </li>
         <li
           className="item"
           onClick={() => this.selectedItem('interaction-ddl')}
         >
           {' '}
-          <i className="fa fa-link" aria-hidden="true" /> <span>Reference</span>
+          <i class="fa fa-link" aria-hidden="true" /> <span>Reference</span>
         </li>
         <li className="item" onClick={() => this.selectedItem('')}>
           {' '}
-          <i className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
+          <i class="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
           <span>Context Fallback</span>
         </li>
       </ul>

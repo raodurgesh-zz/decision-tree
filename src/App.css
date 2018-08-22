@@ -23,6 +23,88 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-wrap {
+  width: 150px;
+  position: relative;
+}
+.start-btn {
+  width: 50px;
+  height: 50px;
+  background: #114583;
+  color: #fff;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  line-height: 50px;
+  position: relative;
+}
+.start-btn::after {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 25px;
+  border-bottom: 1px solid #114583;
+  width: 83px;
+}
+
+.start-btn::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 50px;
+  border-left: 1px solid #114583;
+  height: 53px;
+  border-bottom-left-radius: 8px;
+}
+
+.start-btn-no-child::after {
+  display: none !important;
+}
+
+.start-btn-has-child {
+  margin-bottom: 30px !important;
+}
+
+.start-btn-has-child::before {
+  height: 82px !important;
+  top: 50px !important;
+}
+.start-btn-has-child::after {
+  left: 23px;
+  top: 70px;
+}
+
+.btn-wrap .add-btn {
+  cursor: pointer;
+  background: url('./assets/add.png') no-repeat;
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  cursor: pointer;
+  position: absolute;
+  right: 31px;
+  top: 57px;
+}
+
+.fa-times,
+.fa-check {
+  font-size: 22px;
+  cursor: pointer;
+}
+.fa-check {
+  color: #008aff;
 }

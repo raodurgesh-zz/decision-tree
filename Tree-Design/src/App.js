@@ -9,7 +9,6 @@ import 'react-sortable-tree/style.css'; // This only needs to be imported once i
 import NodeRendererDefault from './node-content-renderer';
 import InterationMenu from './utils/interaction-menu';
 import InterationBox from './utils/interaction-box';
-import './App.css';
 
 const getNodeKey = ({ treeIndex }) => treeIndex;
 
@@ -19,7 +18,7 @@ export default class Tree extends Component {
 
     this.addChildNode = this.addChildNode.bind(this);
     this.removeNode = this.removeNode.bind(this);
-    this.renderTreeNode = this.renderTreeNode.bind(this);
+    this.changeTreeNode = this.changeTreeNode.bind(this);
 
     this.state = {
       treeData: [{ type: 'interaction-input' }],
@@ -34,7 +33,7 @@ export default class Tree extends Component {
     this.setState(state => ({
       treeData: addNodeUnderParent({
         treeData: state.treeData,
-        parentKey: path && path[path.length - 1],
+        parentKey: path[path.length - 1],
         expandParent: true,
         getNodeKey,
         newNode: {
@@ -45,20 +44,16 @@ export default class Tree extends Component {
   }
 
   removeNode({ path }) {
-    this.setState(state => {
-      let treeData = removeNodeAtPath({
+    this.setState(state => ({
+      treeData: removeNodeAtPath({
         treeData: state.treeData,
         path,
         getNodeKey,
-      });
-      if (!treeData || !treeData.length) {
-        treeData = [{ type: 'interaction-input' }];
-      }
-      return { treeData };
-    });
+      }),
+    }));
   }
 
-  renderTreeNode({ title, type, path }) {
+  changeTreeNode({ path, title, type }) {
     const treeData = changeNodeAtPath({
       treeData: this.state.treeData,
       path,
@@ -92,10 +87,6 @@ export default class Tree extends Component {
 
   render() {
     const interationMenu = this.state.interationMenu;
-    const hasNode =
-      this.state.treeData &&
-      this.state.treeData[0] &&
-      this.state.treeData[0].id;
 
     const InteractionInput = ({ node, path }) => (
       <InterationBox
@@ -105,7 +96,7 @@ export default class Tree extends Component {
         }
         removeNode={() => this.removeNode({ path })}
         setTitle={title =>
-          this.renderTreeNode({ node, path, title, type: 'node' })
+          this.changeTreeNode({ node, path, title, type: 'node' })
         }
       />
     );
@@ -116,7 +107,7 @@ export default class Tree extends Component {
         showRemoveButton={true}
         removeNode={() => this.removeNode({ path })}
         setTitle={title =>
-          this.renderTreeNode({ node, path, title, type: 'node' })
+          this.changeTreeNode({ node, path, title, type: 'node' })
         }
       />
     );
@@ -138,8 +129,7 @@ export default class Tree extends Component {
     };
 
     const showInteractionMenu = ({ event, node, path }) => {
-      const { left, top } =
-        event.target && event.target.getBoundingClientRect();
+      const { clientX: left, clientY: top } = event;
       this.setState({
         interationMenu: {
           show: true,
@@ -153,19 +143,6 @@ export default class Tree extends Component {
       this.setState({ interationMenu: { show: false } });
     };
 
-    const rootAddNodeButton = ({ node, path }) => {
-      return (
-        hasNode && (
-          <div
-            className="add-btn"
-            onClick={event => showInteractionMenu({ node, path, event })}
-          >
-            {' '}
-          </div>
-        )
-      );
-    };
-
     return (
       <div>
         {interationMenu.show && (
@@ -177,18 +154,13 @@ export default class Tree extends Component {
         )}
         <div style={{ height: 400, margin: 50 }}>
           <div className="btn-wrap">
-            <div
-              className={`start-btn start-btn-${
-                hasNode ? 'has-child' : 'no-child'
-              }`}
-            >
-              START
-            </div>
-            {rootAddNodeButton({ node: null, path: null })}
+            <div className="start-btn">START</div>
+            <div class="add-btn" />
           </div>
           <SortableTree
             treeData={this.state.treeData}
             rowHeight={100}
+            isVirtualized={false}
             onChange={treeData => this.setState({ treeData })}
             theme={{ nodeContentRenderer: NodeRendererDefault }}
             generateNodeProps={({ node, path }) => ({
