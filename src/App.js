@@ -61,7 +61,7 @@ export default class Tree extends Component {
           <SortableTree
             treeData={this.state.treeData}
             isVirtualized={false}
-            height={1003}
+            rowHeight={30}
             onChange={treeData => this.setState({ treeData })}
             theme={{
               nodeContentRenderer: NodeRendererDefault,
